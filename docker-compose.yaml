@@ -31,12 +31,12 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - postgres
+      - db
     environment:
       DB_NAME: mydb
       DB_USER: a57873032
       DB_PASSWORD: a57873032
-      DB_HOST: postgres
+      DB_HOST: db
       DB_PORT: 5432
 
   # =========================
