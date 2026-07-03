@@ -1,0 +1,72 @@
+volumes:
+  react-dist:
+  pgdata:
+
+services:
+
+  # =========================
+  # PostgreSQL
+  # =========================
+  db:
+    image: postgres:16
+    container_name: postgres-db
+    restart: always
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: a57873032
+      POSTGRES_PASSWORD: a57873032
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  # =========================
+  # Django Backend
+  # =========================
+  backend:
+    build:
+      context: ./backend
+    container_name: backend
+    restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    environment:
+      DB_NAME: mydb
+      DB_USER: a57873032
+      DB_PASSWORD: a57873032
+      DB_HOST: postgres
+      DB_PORT: 5432
+
+  # =========================
+  # React Build
+  # =========================
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend
+    volumes:
+      - react-dist:/dist
+    command: >
+      sh -c "
+      npm ci &&
+      npm run build &&
+      cp -r dist/. /dist
+      "
+
+  # =========================
+  # Nginx
+  # =========================
+  nginx:
+    build:
+      context: ./nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - react-dist:/usr/share/nginx/html
+    depends_on:
+      - frontend
+      - backend
+    restart: always

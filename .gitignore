@@ -1,0 +1,88 @@
+
+# =========================
+# OS / Editor
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# =========================
+# Logs
+# =========================
+*.log
+logs/
+
+# =========================
+# Environment variables
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Node (React)
+# =========================
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+
+# Vite / React cache
+frontend/.vite/
+frontend/.cache/
+
+# =========================
+# Django
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+*.sqlite3
+
+# Django static/media (local only)
+backend/staticfiles/
+backend/media/
+
+# migrations (보통은 유지하지만 필요시 제외)
+# backend/**/migrations/*.py
+# !backend/**/migrations/__init__.py
+
+# =========================
+# Python virtual env
+# =========================
+venv/
+.env/
+env/
+.venv/
+
+# =========================
+# Docker
+# =========================
+docker-compose.override.yml
+
+# =========================
+# Coverage / Tests
+# =========================
+htmlcov/
+.coverage
+.pytest_cache/
+
+# =========================
+# Build outputs (general)
+# =========================
+dist/
+build/
+
+# =========================
+# Jenkins
+# =========================
+*.jenkinsfile.lock
+
+# =========================
+# Misc
+# =========================
+*.swp
+*.swo
