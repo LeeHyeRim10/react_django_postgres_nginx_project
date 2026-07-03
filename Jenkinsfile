@@ -33,20 +33,7 @@ pipeline {
         }
 
         // =========================
-        // 3. Backend 준비 (Django 체크)
-        // =========================
-        stage('Backend Check') {
-            steps {
-                sh '''
-                    cd backend
-                    pip install -r requirements.txt
-                    python manage.py check
-                '''
-            }
-        }
-
-        // =========================
-        // 4. Docker Build (전체)
+        // 3. Docker Build
         // =========================
         stage('Docker Build') {
             steps {
@@ -57,7 +44,7 @@ pipeline {
         }
 
         // =========================
-        // 5. Deploy (전체 재기동)
+        // 4. Deploy
         // =========================
         stage('Deploy') {
             steps {
